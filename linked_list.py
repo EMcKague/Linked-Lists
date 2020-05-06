@@ -68,16 +68,16 @@ class LinkedList:
         new_link.data = data  # set new_link data
         cur = self.head
 
-        if index == 1:
-            cur = cur.next
-            new_link.next = cur.next
-            cur.next = new_link
+        # if index == 1:
+        #     cur = cur.next
+        #     new_link.next = cur.next
+        #     cur.next = new_link
 
-        else:
-            for i in range(index - 1):
-                cur = cur.next
-            new_link.next = cur.next
-            cur.next = new_link
+        # else:
+        for i in range(index):
+            cur = cur.next
+        new_link.next = cur.next
+        cur.next = new_link
 
     def remove_link(self, index):
         """
@@ -244,18 +244,21 @@ class LinkedList:
 
 
 # Ll = LinkedList()
-
+#
 # Ll.add_front(5)
 # Ll.add_front(4)
 # Ll.add_back(6)
-# Ll.show_list()
+# print(Ll.__str__())
 # print("-----")
-# Ll.add_link_before(7, 4)
+# Ll.add_link_before(7, 2)
+# print("added 7 before index 4")
+# print(Ll.__str__())
 # Ll.add_link_before(2, 0)
+# print("added 2 to start")
+# print(Ll.__str__())
 # Ll.add_link_before(3, 1)
-# Ll.add_front(1)
-# Ll.remove_link(6)
-# Ll.remove(6)
+# print("added 3 to before index 1")
+# print(Ll.__str__())
 # print(Ll.contains(5))
 # print(Ll.contains(6))
 # print("-----")
@@ -516,44 +519,49 @@ class CircularList:
         after the call it will be 3,2,1,0
         """
 
-        cur = self.head
-        temp = None
 
-        while cur != self.tail:
-            temp = cur.prev
+
+        lastnode = self.sentinel.prev
+        cur = lastnode
+
+
+        while cur.prev != lastnode:
+            prev = cur.prev
             cur.prev = cur.next
-            cur.next = temp
-            cur = cur.prev
+            cur.next = prev
+            cur = prev
 
-        if not self.is_empty():
-            self.head = temp.prev
+        return
 
-
-# cList = CircularList()
-# print("TEST CASES")
-# print("add_link_before tests")
-# cList.add_link_before(9, 0)
-# cList.add_link_before(8, 0)
-# cList.add_link_before(7, 0)
-# cList.add_link_before(10, 3)
-# print(cList.__str__())
-# print("List should be:[7 <-> 8 <-> 9 <-> 10]")
-# print("remove test cases")
-# cList.remove_link(3)
-# cList.remove_link(1)
-# cList.remove_link(0)
-# cList.remove_link(0)
-# print(cList.__str__())
-# print("List should be:[]")
-# print("is empty test, it should be True")
-# print(cList.is_empty())
-# print("add front and back tests")
-# print("List should be:[7 <-> 8 <-> 9 <-> 10]")
-# cList.add_front(8)
-# cList.add_front(7)
-# cList.add_back(9)
-# cList.add_back(10)
-# print(cList.__str__())
+cList = CircularList()
+print("TEST CASES")
+print("add_link_before tests")
+cList.add_link_before(9, 0)
+cList.add_link_before(8, 0)
+cList.add_link_before(7, 0)
+cList.add_link_before(10, 3)
+print(cList.__str__())
+print("List should be:[7 <-> 8 <-> 9 <-> 10]")
+print("remove test cases")
+cList.remove_link(3)
+cList.remove_link(1)
+cList.remove_link(0)
+cList.remove_link(0)
+print(cList.__str__())
+print("List should be:[]")
+print("is empty test, it should be True")
+print(cList.is_empty())
+print("add front and back tests")
+print("List should be:[7 <-> 8 <-> 9 <-> 10]")
+cList.add_front(8)
+cList.add_front(7)
+cList.add_back(9)
+cList.add_back(10)
+print(cList.__str__())
+print("REVERSE TEST")
+print("List should be:[10 <-> 9 <-> 8 <-> 7]")
+cList.circularListReverse()
+print(cList.__str__())
 # print("test cases for get front and get back")
 # print("should return 7 and 10")
 # print(cList.get_front())
