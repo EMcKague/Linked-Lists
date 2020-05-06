@@ -521,46 +521,52 @@ class CircularList:
 
 
 
-        lastnode = self.sentinel.prev
-        cur = lastnode
+        cur = self.sentinel
 
-        while cur.prev != lastnode:
-            prev = cur.prev
-            cur.prev = cur.next
-            cur.next = prev
-            cur = prev
+        while cur.next != self.sentinel:
 
+            prevnode = cur.prev
+            nextnode = cur.next
+            cur.next = prevnode
+            cur.prev = nextnode
+
+            cur = nextnode
+
+        prevnode = cur.prev
+        nextnode = cur.next
+        cur.next = prevnode
+        cur.prev = nextnode
         return
 
 # cList = CircularList()
-# print("TEST CASES")
-# print("add_link_before tests")
-# cList.add_link_before(9, 0)
-# cList.add_link_before(8, 0)
-# cList.add_link_before(7, 0)
-# cList.add_link_before(10, 3)
-# print(cList.__str__())
-# print("List should be:[7 <-> 8 <-> 9 <-> 10]")
-# print("remove test cases")
-# cList.remove_link(3)
-# cList.remove_link(1)
-# cList.remove_link(0)
-# cList.remove_link(0)
-# print(cList.__str__())
-# print("List should be:[]")
-# print("is empty test, it should be True")
-# print(cList.is_empty())
-# print("add front and back tests")
-# print("List should be:[7 <-> 8 <-> 9 <-> 10]")
-# cList.add_front(8)
-# cList.add_front(7)
-# cList.add_back(9)
-# cList.add_back(10)
-# print(cList.__str__())
-# print("REVERSE TEST")
-# print("List should be:[10 <-> 9 <-> 8 <-> 7]")
-# cList.circularListReverse()
-# print(cList.__str__())
+# # print("TEST CASES")
+# # print("add_link_before tests")
+# # cList.add_link_before(9, 0)
+# # cList.add_link_before(8, 0)
+# # cList.add_link_before(7, 0)
+# # cList.add_link_before(10, 3)
+# # print(cList.__str__())
+# # print("List should be:[7 <-> 8 <-> 9 <-> 10]")
+# # print("remove test cases")
+# # cList.remove_link(3)
+# # cList.remove_link(1)
+# # cList.remove_link(0)
+# # cList.remove_link(0)
+# # print(cList.__str__())
+# # print("List should be:[]")
+# # print("is empty test, it should be True")
+# # print(cList.is_empty())
+# # print("add front and back tests")
+# # print("List should be:[7 <-> 8 <-> 9 <-> 10]")
+# # cList.add_front(8)
+# # cList.add_front(7)
+# # cList.add_back(9)
+# # cList.add_back(10)
+# # print(cList.__str__())
+# # print("REVERSE TEST")
+# # print("List should be:[10 <-> 9 <-> 8 <-> 7]")
+# # cList.circularListReverse()
+# # print(cList.__str__())
 # print("test cases for get front and get back")
 # print("should return 7 and 10")
 # print(cList.get_front())
