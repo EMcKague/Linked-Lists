@@ -524,7 +524,6 @@ class CircularList:
         lastnode = self.sentinel.prev
         cur = lastnode
 
-
         while cur.prev != lastnode:
             prev = cur.prev
             cur.prev = cur.next
